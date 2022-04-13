@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import Category from "../../types/Category";
 import Product from "../../types/Product";
 import ProductCard from "./ProductCard";
