@@ -54,10 +54,7 @@ const Home: NextPage = () => {
           </div>
           <Link href={"/createProduct"}>
             <a>
-              <div
-                className="fixed flex items-center justify-center bg-black rounded-full cursor-pointer w-14 h-14 bottom-5 right-5"
-                onClick={() => router.push("/createProduct")}
-              >
+              <div className="fixed flex items-center justify-center bg-black rounded-full cursor-pointer w-14 h-14 bottom-5 right-5">
                 <span className="pb-3 text-6xl text-white">+</span>
               </div>
             </a>
