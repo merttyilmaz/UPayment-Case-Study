@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Dropdown from "../components/Dropdown";
+import CategoryDropdown from "../components/CategoryDropdown";
 import Category from "../types/Category";
 
 interface Product {
@@ -30,20 +30,28 @@ const ProductDetail: NextPage = () => {
   const createProduct = async (e) => {
     e.preventDefault();
 
-    setProduct({ ...product, category: category.name });
-    await fetch(
-      "https://62286b649fd6174ca82321f1.mockapi.io/case-study/products",
-      {
+    setProduct((s) => {
+      const url =
+        "https://62286b649fd6174ca82321f1.mockapi.io/case-study/products";
+      const reqProduct = { ...s, category: category.name };
+      fetch(url, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(product),
-      }
-    ).then((res) => {
-      if (res.status === 201) {
-        router.push("/");
-      }
+        body: JSON.stringify(reqProduct),
+      })
+        .then((res) => {
+          if (res.status === 201) {
+            router.push("/");
+          }
+        })
+        .catch((err) => {
+          router.push("/");
+          console.log(err);
+        });
+
+      return reqProduct;
     });
   };
 
@@ -84,7 +92,11 @@ const ProductDetail: NextPage = () => {
                 setProduct({ ...product, avatar: e.target.value })
               }
             />
-            <Dropdown setCategory={setCategory} width={"100%"} />
+            <CategoryDropdown
+              noFetch
+              setCategory={setCategory}
+              width={"100%"}
+            />
             <input
               placeholder="Price"
               type="number"

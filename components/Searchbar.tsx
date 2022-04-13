@@ -3,27 +3,22 @@ import Product from "../types/Product";
 
 export default function Searchbar({
   products,
-  setProducts,
+  setShownProductIndexes,
 }: {
   products: Product[];
-  setProducts: Dispatch<SetStateAction<Product[]>>;
+  setShownProductIndexes: Dispatch<SetStateAction<number[]>>;
 }) {
-  const [tempProductList, setTempProductList] = useState([]);
-  useEffect(() => {
-    setTempProductList(products);
-  }, []);
-
   const filterProducts = (e: string) => {
     if (e.length > 0) {
       let arr = [];
-      products.map((product) => {
+      products.map((product, i) => {
         if (product.name.toLowerCase().includes(e.toLowerCase())) {
-          arr.push(product);
+          arr.push(i);
         }
       });
-      setProducts(arr);
+      setShownProductIndexes(arr);
     } else {
-      setProducts(tempProductList);
+      setShownProductIndexes(products.map((product, i) => i));
     }
   };
 

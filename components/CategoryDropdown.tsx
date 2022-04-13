@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Category from "../types/Category";
 
-export default function Dropdown({
+export default function CategoryDropdown({
   setCategory,
   width,
+  noFetch,
 }: {
   setCategory: Dispatch<SetStateAction<Category>>;
   width?: string;
+  noFetch?: boolean;
 }) {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -15,19 +17,27 @@ export default function Dropdown({
   }, []);
 
   const getCategories = async () => {
-    const response = await fetch(
-      "https://62286b649fd6174ca82321f1.mockapi.io/case-study/categories/"
-    );
+    const url =
+      "https://62286b649fd6174ca82321f1.mockapi.io/case-study/categories";
+    const response = await fetch(url);
     const data = await response.json();
     setCategories(data);
   };
 
   const getCategoryProducts = async (id: string) => {
-    const response = await fetch(
-      `https://62286b649fd6174ca82321f1.mockapi.io/case-study/categories/${id}`
-    );
-    const data = await response.json();
-    setCategory(data);
+    const url = `https://62286b649fd6174ca82321f1.mockapi.io/case-study/categories/${id}`;
+
+    if (!noFetch) {
+      const response = await fetch(url);
+      const data = await response.json();
+      setCategory(data);
+    } else {
+      categories.map((category) => {
+        if (category.id === id) {
+          setCategory(category);
+        }
+      });
+    }
   };
 
   return (
