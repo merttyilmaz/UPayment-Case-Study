@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CategoryDropdown from "../components/CategoryDropdown";
+import FloatingActionButton from "../components/FloatingActionButton";
 import ProductList from "../components/products/ProductList";
 import Searchbar from "../components/Searchbar";
 import Category from "../types/Category";
@@ -13,7 +12,6 @@ const Home: NextPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [shownProductIndexes, setShownProductIndexes] = useState<number[]>([]);
   const [category, setCategory] = useState<Category>({ name: "", id: "" });
-  const router = useRouter();
 
   useEffect(() => {
     getProducts();
@@ -52,13 +50,7 @@ const Home: NextPage = () => {
               category={category}
             />
           </div>
-          <Link href={"/createProduct"}>
-            <a>
-              <div className="fixed flex items-center justify-center bg-black rounded-full cursor-pointer w-14 h-14 bottom-5 right-5">
-                <span className="pb-3 text-6xl text-white">+</span>
-              </div>
-            </a>
-          </Link>
+          <FloatingActionButton />
         </div>
       </main>
     </div>
