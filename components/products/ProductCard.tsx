@@ -28,10 +28,10 @@ export default function ProductCard({ product }: { product: Product }) {
         onClick={() => router.push(`/product/${product.id}`)}
       >
         <Image
-          src={`https://res.cloudinary.com/demo/image/fetch/${product.avatar}`}
+          src={`/api/imageproxy?url=${encodeURIComponent(product.avatar)}`}
           width={200}
           height={200}
-          className="inline-block"
+          objectFit="cover"
         />
       </div>
       <div

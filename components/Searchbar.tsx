@@ -26,7 +26,7 @@ export default function Searchbar({
     <input
       type="text"
       placeholder="Apple Watch, Samsung S21, Macbook Pro,.."
-      className="w-1/4 p-2 bg-white shadow-md rounded-xl "
+      className="w-full p-2 mb-4 bg-white shadow-md rounded-xl md:w-1/4 md:mb-0"
       onChange={(e) => filterProducts(e.target.value)}
     />
   );

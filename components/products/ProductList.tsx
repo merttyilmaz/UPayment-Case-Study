@@ -25,7 +25,7 @@ export default function ProductList({
   };
 
   return (
-    <div className="flex flex-wrap justify-start max-w-screen-lg gap-10 mx-auto mt-20 al">
+    <div className="flex flex-wrap justify-center max-w-screen-lg gap-6 mx-auto mt-20 al md:justify-start sm:justify-center">
       {viewProductList()}
     </div>
   );

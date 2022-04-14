@@ -42,7 +42,7 @@ export default function CategoryDropdown({
 
   return (
     <select
-      className="w-1/4 p-2 bg-white shadow-md rounded-xl"
+      className="w-full p-2 bg-white shadow-md md:w-1/4 rounded-xl"
       style={{ width: width }}
       onChange={(e) => getCategoryProducts(e.target.value)}
     >
