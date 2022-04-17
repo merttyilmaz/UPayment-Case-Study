@@ -29,6 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
       >
         <Image
           src={`/api/imageproxy?url=${encodeURIComponent(product.avatar)}`}
+          alt={product.name}
           width={200}
           height={200}
           objectFit="cover"

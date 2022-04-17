@@ -16,6 +16,7 @@ const ProductDetail: NextPage = () => {
     id: "",
   });
   const router = useRouter();
+
   useEffect(() => {
     getProduct();
   }, []);
@@ -44,6 +45,7 @@ const ProductDetail: NextPage = () => {
               <div className="overflow-hidden rounded-2xl">
                 <Image
                   src={`https://res.cloudinary.com/demo/image/fetch/${product.avatar}`}
+                  alt={product.name}
                   width={200}
                   height={200}
                 />
